@@ -1,0 +1,6 @@
+Note that you must refer
+"Mousavi, S. M., Rabiee, H. R., Moshref, M., and Dabirmoghaddam, A. 2007. MobiSim: A Framework for Simulation of Mobility Models in Mobile Ad-Hoc Networks. In Proceedings of the Third IEEE international Conference on Wireless and Mobile Computing, Networking and Communications (October 08 - 10, 2007). WIMOB. IEEE Computer Society, Washington, DC, 82. " 
+in any paper or document which used this program. Please contact masood.moshref.j@gmail.com or find me on http://masoudmoshref.com to tell any comment.
+
+This product includes software developed by
+The Apache Software Foundation (http://www.apache.org/).

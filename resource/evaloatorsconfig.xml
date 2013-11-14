@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite name="">
+    <default>
+        <parameter name="sampletime" value="1"/>
+		<parameter name="sortpriority" value="0"/>		
+    </default>
+    <parameterable name="1" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.ConnectivityEvaluator">
+    </parameterable>
+    <parameterable name="2" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.ConnectivityRatioEvaluator">
+    </parameterable>
+    <parameterable name="4" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.AverageNodeDegree">
+    </parameterable>
+    <parameterable name="5" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.NetworkDiameterEvaluator">
+    </parameterable>
+    <parameterable name="6" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.AvarageRange">
+    </parameterable>
+	<parameterable name="8" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.ClusteringCoefficient">
+    </parameterable>
+	<parameterable name="9" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.LinkEvaluator2">
+    </parameterable>
+	<parameterable name="11" class="edu.sharif.ce.dml.mobisim.evaluator.model.network.Interference">
+    </parameterable>	
+	
+	<parameterable name="14" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.RelativeSpeedCalculator">
+    </parameterable>
+    <parameterable name="15" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.SpatialCalculator">
+        <parameter name="maxspatialrelation" value="100"/>
+    </parameterable>
+    <parameterable name="16" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.TemporalCalculator">
+        <parameter name="maxtimerelation" value="30"/>
+    </parameterable>
+    <parameterable name="17" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.AverageDistance">
+    </parameterable>
+	<parameterable name="18" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.LocationDistributionVariance">
+		<parameter name="slicesize" value="20"/>
+    </parameterable>
+	<parameterable name="19" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.RepetitiveBehavior">
+		<parameter name="initialpointselectionsampletime" value="20"/>
+		<parameter name="range" value="50"/>
+    </parameterable>
+	<parameterable name="20" class="edu.sharif.ce.dml.mobisim.evaluator.model.position.TransitionEvaluator">
+		<parameter name="transitiondirectionthreshold" value="0"/>
+		<parameter name="transitionspeedthreshold" value="3"/>
+    </parameterable>
+</rootcomposite>

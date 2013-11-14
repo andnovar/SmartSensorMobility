@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite name="">
+    <parameterable name="random initializer"
+	  class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.initiallocation.RandomSquareLocationInitializer">
+
+		<parameterable name="random1"
+		class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+		  <composite name="choice">
+			<parameterable name="RandomValue"
+			class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+			  <parameter name="distribution"
+			  value="Uniform" />
+			  <parameter name="params" value="0,1" />
+			  <parameter name="bias" value="0" />
+			  <parameter name="scale" value="1" />
+			</parameterable>
+			
+		  </composite>
+		</parameterable>
+		<parameterable name="random2"
+		class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+		  <composite name="choice">
+			<parameterable name="RandomValue"
+			class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+			  <parameter name="distribution" value="Uniform" />
+			  <parameter name="params" value="0,1" />
+			  <parameter name="bias" value="0" />
+			  <parameter name="scale" value="1" />
+			</parameterable>
+		  </composite>
+		</parameterable>
+	  </parameterable>
+	  <parameterable name="fixed initializer"
+	  class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.initiallocation.FixedLocationInitializer">
+		<parameterable name="locations"
+  class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+
+			<parameter name="variablenumber" value="true" />
+			<composite name="selected">
+				<parameterable name="sampleLocation"
+				  class="edu.sharif.ce.dml.common.parameters.logic.parameterable.LocationParameter">
+
+					<parameter name="x" value="200.0" />
+					<parameter name="y" value="200.0" />
+				  </parameterable>
+			</composite>
+			<composite name="choices">
+			  <parameterable name="defaultLocation"
+			  class="edu.sharif.ce.dml.common.parameters.logic.parameterable.LocationParameter">
+
+				<parameter name="x" value="200.0" />
+				<parameter name="y" value="200.0" />
+			  </parameterable>
+			</composite>
+		  </parameterable>
+	  </parameterable>
+</rootcomposite>

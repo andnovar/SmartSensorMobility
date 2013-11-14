@@ -1,0 +1,47 @@
+<project name="MobiSim" default="dist" basedir=".">
+    <description>
+        MobiSim application
+    </description>
+
+    <property name="dist" location="dist"/>
+    <property name="srcdist" location="srcdist"/>
+    <property name="defaultOutputFolder" value="output"/>
+	
+    <target name="dist">
+        <!-- sequence is important -->
+         <subant target="dist">
+             <property name="dist" value="${dist}"/>
+             <property name="commonBuild" location="resource/commonbuild.xml"/>
+              <fileset dir="Common" includes="build.xml"/>
+              <fileset dir="." includes="*/build.xml" excludes="Evaluator/* CoreApplication/* Common/* ThreeD/* EvaluationAnalyzer/* TopoSim/*" />
+              <fileset dir="." includes="Evaluator/build.xml ThreeD/build.xml" />
+			  <fileset dir="." includes="EvaluationAnalyzer/build.xml TopoSim/build.xml" />
+              <fileset dir="." includes="CoreApplication/build.xml" />
+        </subant>
+        <copy todir="${dist}">
+            <fileset file="config.properties"/>
+            <fileset file="license*"/>
+            <fileset file="NOTE*"/>
+            <fileset dir="." includes="resource/* resource/images/*" excludes="*svn*"/>
+        </copy>
+        <mkdir dir="${dist}/${defaultOutputFolder}"/>
+    </target>
+
+    <target name="clean" description="clean up">
+        <subant target="clean">
+            <property name="dist" value="${dist}"/>
+            <property name="commonBuild" location="resource/commonbuild.xml"/>
+            <fileset dir="." includes="*/build.xml" />
+        </subant>
+        <delete dir="${dist}" />
+    </target>
+    <target name="source" description="Jar Sources">
+        <mkdir dir="${srcdist}"/>
+        <subant target="srcdist">
+            <property name="srcdist" value="${srcdist}"/>
+            <property name="commonBuild" location="resource/commonbuild.xml"/>
+            <fileset dir="." includes="*/build.xml" />
+        </subant>
+    </target>
+
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootcomposite name="">
+  <parameterable name="ThreeDMap" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.ThreeDMap">
+    <parameter name="height" value="500"/>
+    <parameter name="gridsize" value="50.0"/>
+    <parameter name="width" value="500"/>
+    <parameterable name="points" class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+      <parameter name="variablenumber" value="false"/>
+      <composite name="selected">
+        <parameter name="3" value="X:50.0 Y:100.0 Z:100.0"/>
+        <parameter name="1" value="X:100.0 Y:100.0 Z:100.0"/>
+        <parameter name="7" value="X:50.0 Y:150.0 Z:100.0"/>
+        <parameter name="5" value="X:100.0 Y:123.0 Z:100.0"/>
+      </composite>
+      <composite name="choices">
+        <parameterable name="X:100.0 Y:123.0 Z:100.0" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+          <parameter name="z" value="100.0"/>
+          <parameter name="y" value="123.0"/>
+          <parameter name="x" value="100.0"/>
+        </parameterable>
+        <parameterable name="X:50.0 Y:150.0 Z:100.0" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+          <parameter name="z" value="100.0"/>
+          <parameter name="y" value="150.0"/>
+          <parameter name="x" value="50.0"/>
+        </parameterable>
+        <parameterable name="X:100.0 Y:100.0 Z:100.0" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+          <parameter name="z" value="100.0"/>
+          <parameter name="y" value="100.0"/>
+          <parameter name="x" value="100.0"/>
+        </parameterable>
+        <parameterable name="X:50.0 Y:100.0 Z:100.0" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+          <parameter name="z" value="100.0"/>
+          <parameter name="y" value="100.0"/>
+          <parameter name="x" value="50.0"/>
+        </parameterable>
+      </composite>
+    </parameterable>
+    <parameter name="cacheprecision" value="1.0"/>
+  </parameterable>
+</rootcomposite>

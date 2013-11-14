@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Common/Commons.iml" filepath="$PROJECT_DIR$/Common/Commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiagramCreator/DiagramCreator.iml" filepath="$PROJECT_DIR$/DiagramCreator/DiagramCreator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvaluationAnalyzer/EvaluationAnalyzer.iml" filepath="$PROJECT_DIR$/EvaluationAnalyzer/EvaluationAnalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Evaluator/Evaluator.iml" filepath="$PROJECT_DIR$/Evaluator/Evaluator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CoreApplication/InitUI.iml" filepath="$PROJECT_DIR$/CoreApplication/InitUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MobilityModel/MobilityGenerator.iml" filepath="$PROJECT_DIR$/MobilityModel/MobilityGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThreeD/ThreeD.iml" filepath="$PROJECT_DIR$/ThreeD/ThreeD.iml" />
+    </modules>
+  </component>
+</project>
+

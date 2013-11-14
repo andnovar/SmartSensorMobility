@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite name="choice">
+    <parameterable name="tracewriterconfig"
+                   class="edu.sharif.ce.dml.common.data.trace.config.TraceWriterConfig">
+        <parameterable name="outputfolder"
+                       class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+            <composite name="choice">
+                <parameterable name="outputfolder"
+                               class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+                    <parameter name="fileaddress" value="output"/>
+                    <parameter name="multiple" value="f"/>
+					<parameter name="isinput" value="f"/>
+                    <parameter name="defaultfilter"
+                               value="edu.sharif.ce.dml.common.data.trace.filter.DirectoryFilter"/>
+                </parameterable>
+            </composite>
+        </parameterable>
+        <parameterable name="tracewriter"
+                       class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="text"/>
+            <composite name="choices">
+                <parameterable name="text"
+                               class="edu.sharif.ce.dml.common.data.trace.plaintext.TextTraceWriter"/>
+                <parameterable name="xml" class="edu.sharif.ce.dml.common.data.trace.xml.XMLTraceWriter"/>
+				<parameterable name="NS" class="edu.sharif.ce.dml.common.data.trace.ns.NSTraceWriter"/>
+            </composite>
+        </parameterable>
+        <parameterable name="filenamegenerator"
+                       class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="simple"/>
+            <composite name="choices">
+                <parameterable name="simple"
+                               class="edu.sharif.ce.dml.common.data.trace.filenamegenerator.SimpleFileName">
+                    <parameter name="seed" value="outputtrace"/>
+                    <parameter name="numberiterate" value="t"/>
+                </parameterable>
+            </composite>
+        </parameterable>
+    </parameterable>
+</rootcomposite>

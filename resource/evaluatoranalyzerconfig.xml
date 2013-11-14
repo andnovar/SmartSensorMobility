@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite >
+    <default>
+		<parameterable name="learnfile" class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+            <composite name="choice">
+                <parameterable name="learnfile" class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+                    <parameter name="fileaddress" value="1.txt"/>
+                    <parameter name="multiple" value="f"/>
+					<parameter name="isinput" value="t"/>
+                    <parameter name="defaultfilter" value="edu.sharif.ce.dml.common.data.trace.filter.EvaluationFilter"/>
+                </parameterable>
+            </composite>
+        </parameterable>
+    </default>
+    <parameterable name="Nearest Center Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.center.NearestCenter">        
+    </parameterable>
+	<parameterable name="Fuzzy KNN Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.fuzzy.FuzzyClassification">
+		<parameter name="kneighbors" value="5"/>
+		<parameter name="distanceweight" value="2"/>
+    </parameterable>
+	<parameterable name="Guassian KNC Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.center.GuassianKnc">
+    </parameterable>
+	<parameterable name="Guassian KNC2 Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.center.GuassianKnc2">
+    </parameterable>
+	<parameterable name="Guassian KNC3 Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.center.GuassianKnc3">
+    </parameterable>
+	<parameterable name="Nearest SVD Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.distance.NearestSVD">
+    </parameterable>
+	<parameterable name="Group SVD Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.distance.GroupSVD">
+        <parameter name="singularcost" value="10"/>
+    </parameterable>
+	<parameterable name="Nearest Distance Classification"
+                   class="edu.sharif.ce.dml.mobisim.evaluationanalyzer.model.distance.NearestDistance">
+    </parameterable>
+</rootcomposite>

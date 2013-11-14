@@ -1,0 +1,103 @@
+<project name="CommonBuild" default="dist" basedir=".">
+    <description>
+        Mobility Simulator Common package
+    </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="srcdist" location="srcdist"/>
+    <property name="lib" location="lib"/>
+
+    <property name="Main-Class" value=""/>
+    <!-- ==================== Compilation Classpath =========================== -->
+
+        <!--
+          Rather than relying on the CLASSPATH environment variable, we constructs the compile
+          classpath to include the jar files, as well as the other components.
+        -->
+
+    <path id="libs.classpath">
+
+        <pathelement path="${basedir}"/>
+        <fileset dir="lib">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <pathconvert property="manifest.classpath" pathsep=" ">
+        <path refid="libs.classpath"/>
+        <mapper>
+            <chainedmapper>
+                <flattenmapper/>
+                <globmapper from="*.jar" to="lib/*.jar"/>
+            </chainedmapper>
+        </mapper>
+    </pathconvert>
+
+    <!--<path id="module.dependency">
+    </path>-->
+
+    <pathconvert property="manifest.dependency" pathsep=" ">
+        <path refid="module.dependency"/>
+        <mapper>
+            <chainedmapper>
+                <flattenmapper/>
+                <identitymapper/>
+            </chainedmapper>
+        </mapper>
+    </pathconvert>
+
+    <target name="init" >
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <echo message="Compiling ${ant.project.name}" level="info"/>
+        <javac srcdir="${src}"
+			destdir="${build}"
+					    debug="true"
+					    deprecation="false"
+					    optimize="true">
+			<classpath  >
+                <path refid="libs.classpath"/>
+                <path refid="module.dependency"/>
+            </classpath>
+        </javac>
+
+    </target>
+
+
+    <target name="dist" depends="compile"
+            description="generate the distribution">
+        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+        <mkdir dir="${dist}"/>
+        <echo message="Creating jar file ${ant.project.name}.jar" level="info"/>
+         <jar jarfile="${dist}/${ant.project.name}.jar" basedir="${build}">
+            <manifest >
+				<attribute name="Built-By" value="Masoud Moshref Javadi"/>
+				<attribute name="license" value="GNU"/>
+                <attribute name="Class-Path" value="${manifest.classpath} ${manifest.dependency}"/>
+                <attribute name="Main-Class" value="${Main-Class}"/>
+            </manifest>
+        </jar>
+        <copy todir="${dist}">
+            <fileset dir="${basedir}" includes="lib/*.*" />
+        </copy>
+    </target>
+
+    <target name="clean" description="clean up">
+        <echo message="Cean up " level="info"/>
+        <delete dir="${dist}/${ant.project.name}.jar"/>
+        <delete dir="${build}"/>
+    </target>
+    <target name="srcdist" description="jar source">
+        <echo message="Creating source jar file ${ant.project.name}-src.jar" level="info"/>
+        <jar jarfile="${srcdist}/${ant.project.name}-src.jar" basedir="${src}">
+        </jar>
+
+    </target>
+
+
+</project>

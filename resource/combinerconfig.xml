@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite >
+<parameterable name="combiner" class="edu.sharif.ce.dml.mobisim.evaluator.model.EvaluationCombiner">
+        <parameterable name="evaluationfiles" class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+            <parameter name="variablenumber" value="t"/>
+            <composite name="selected" >
+            </composite>
+            <composite name="choices" >
+				<parameterable name="EvaluationFiles"
+                               class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+                    <parameter name="fileaddress" value="output"/>
+                    <parameter name="multiple" value="t"/>
+                    <parameter name="defaultfilter"
+                               value="edu.sharif.ce.dml.common.data.trace.filter.EvaluationFilter"/>
+                </parameterable>
+            </composite>
+        </parameterable>
+		        <parameterable name="outputfile"
+                       class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+            <composite name="choice">
+                <parameterable name="outputfile"
+                               class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+                    <parameter name="fileaddress" value="output"/>
+                    <parameter name="multiple" value="f"/>
+                    <parameter name="defaultfilter"
+                               value="edu.sharif.ce.dml.common.data.trace.filter.EvaluationFilter"/>
+                </parameterable>
+            </composite>
+        </parameterable>
+
+    </parameterable>
+</rootcomposite>

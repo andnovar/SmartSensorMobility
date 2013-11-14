@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite name="">
+  <parameterable name="simulation"
+  class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.logic.Simulation">
+
+    <parameter name="nodenumber" value="10" />
+    <parameter name="maxsimulationtime" value="1000" />
+    <parameter name="transitionfilename"
+    value="outputtransition.txt" />
+    <parameterable name="tracewriterconfig"
+    class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+      <composite name="choice" import="tracewriter.xml">
+      </composite>
+    </parameterable>
+    <parameterable name="models"
+    class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+      <parameter name="selected" value="Random WayPoint" />
+      <composite name="choices" lazyLoadableID="allModels">
+        <default>
+          <parameter name="maxspeed" value="10" />
+          <parameter name="minspeed" value="5" />
+          <parameter name="maxpausetime" value="10" />
+          <parameter name="maxtransition" value="2000000" />
+          <parameterable name="mapeditor"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+            <composite name="choice">
+              <parameterable name="mapeditor"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.MapEditor">
+              </parameterable>
+            </composite>
+          </parameterable>
+		  <parameterable name="rangealgorithms"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+			<parameter name="selected" value="NullPowerAlgorithm" />
+            <composite name="choices" import="poweralgorithms.xml">
+            </composite>
+          </parameterable>
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="squarereflect" />
+            <composite name="choices"
+            lazyLoadableID="reflectiveMaps">
+              <parameterable name="squarereflect"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.SquareReflectMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+              </parameterable>
+              <parameterable name="diskreflect"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.DiskReflectiveMap">
+
+                <parameter name="radius" value="300" />
+              </parameterable>
+			  <parameterable name="obstaclemap"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.obstaclemap.ObstacleMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+				<parameter name="extendmap" value="true" />
+				<parameterable name="obstacles"
+					class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+					<parameter name="variablenumber" value="true" />
+					<composite name="selected"></composite>
+					<composite name="choices">
+					  <parameterable name="rectangle"
+					  class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.obstaclemap.RectangleObstacle">
+						<parameter name="width" value="100" />
+						<parameter name="height" value="50" />
+						<parameter name="rotation" value="0" />
+						<parameter name="offset" value="50.0,50.0" />					
+					  </parameterable>
+					</composite>
+				</parameterable>
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="locationinitializer"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="random initializer" />
+            <composite name="choices" import="locationinitializer.xml">              
+            </composite>
+          </parameterable>
+        </default>
+        <parameterable name="Random WayPoint WR"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.randomwaypoint.RandomWayPointWR">
+
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="square" />
+            <composite name="choices">
+              <parameterable name="square"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.SquareMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+              </parameterable>
+              <parameterable name="circle"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.CircleMap">
+
+                <parameter name="radius" value="250" />
+              </parameterable>
+              <parameterable name="disk"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.DiskMap">
+
+                <parameter name="radius" value="250" />
+              </parameterable>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="Random WayPoint"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.randomwaypoint.RandomWayPoint">
+        </parameterable>
+        <parameterable name="Random Direction"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.randomdirection.RandomDirectionModel">
+        </parameterable>
+        <parameterable name="File Model"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.filemodel.FileModel">
+		<parameterable name="locationinitializer"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="Null" />
+            <composite name="choices">
+              <parameterable name="Null"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.initiallocation.NullLocationInitializer"/>
+            </composite>
+          </parameterable>
+
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="square" />
+            <composite name="choices">
+              <parameterable name="square"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.SquareMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="inputfile"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+            <composite name="choice">
+              <parameterable name="inputfile"
+              class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+
+                <parameter name="fileaddress"
+                value="output/outputtrace.txt" />
+                <parameter name="multiple" value="f" />
+                <parameter name="isinput" value="t" />
+                <parameter name="defaultfilter"
+                value="edu.sharif.ce.dml.common.data.trace.filter.TraceFilters" />
+              </parameterable>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="Nomadic"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.group.NomadicModel">
+
+          <parameter name="adr" value="0.05" />
+          <parameter name="sdr" value="0.05" />
+          <parameter name="maxinitialdistance" value="30" />
+          <parameter name="walkingtime" value="40" />
+          <parameter name="groupsizes" value="1,1" />
+          <parameter name="leadersmodeloffset" value="0.0,0.0" />
+          <parameter name="extratraces" value="t" />
+		  <parameter name="pergrouprange" value="f" />
+          <parameterable name="leadersmodel"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+            <parameter name="selected" value="Random Walk" />
+            <composite name="choices" lazyReference="allModels" />
+          </parameterable>
+        </parameterable>
+        <parameterable name="Pursue"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.group.PursueModel">
+
+          <parameter name="adr" value="0.35" />
+          <parameter name="sdr" value="0.15" />
+          <parameter name="maxinitialdistance" value="30" />
+          <parameter name="walkingtime" value="40" />
+          <parameter name="groupsizes" value="1,1,1,1,1" />
+          <parameter name="leadersmodeloffset" value="0.0,0.0" />
+          <parameter name="extratraces" value="t" />
+		  <parameter name="pergrouprange" value="f" />
+          <parameterable name="leadersmodel"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+            <parameter name="selected" value="Random Walk" />
+            <composite name="choices" lazyReference="allModels" />
+          </parameterable>
+        </parameterable>
+        <parameterable name="String Model"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.group.StringModel">
+
+          <parameter name="adr" value="0.05" />
+          <parameter name="sdr" value="0.15" />
+          <parameter name="maxinitialdistance" value="30" />
+          <parameter name="walkingtime" value="40" />
+          <parameter name="groupsizes" value="1,1" />
+          <parameter name="leadersmodeloffset" value="0.0,0.0" />
+          <parameter name="extratraces" value="t" />
+		  <parameter name="pergrouprange" value="f" />
+          <parameterable name="leadersmodel"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+            <parameter name="selected" value="Random Walk" />
+            <composite name="choices" lazyReference="allModels" />
+          </parameterable>
+        </parameterable>
+        <parameterable name="Row Model"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.group.RowModel">
+
+          <parameter name="adr" value="0.0" />
+          <parameter name="sdr" value="0.05" />
+          <parameter name="maxinitialdistance" value="30" />
+          <parameter name="walkingtime" value="40" />
+          <parameter name="groupsizes" value="1,1,1,1,1" />
+          <parameter name="leadersmodeloffset" value="0.0,0.0" />
+          <parameter name="extratraces" value="t" />
+		  <parameter name="pergrouprange" value="f" />
+          <parameterable name="leadersmodel"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+            <parameter name="selected" value="Random Walk" />
+            <composite name="choices" lazyReference="allModels" />
+          </parameterable>
+        </parameterable>
+        <parameterable name="Random Walk"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.randomwalk.RandomWalkModel">
+
+          <parameter name="walkingtime" value="20" />
+        </parameterable>
+        <parameterable name="FreeWay"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.freeway.FreeWayWithLaneModel">
+
+          <parameter name="maxacceleration" value="2" />
+          <parameter name="safedistanceratio" value="2.0" />
+          <parameter name="fixedacceleration" value="false" />
+          <parameter name="positiveaccratio" value="2.0" />
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="FreeWay" />
+            <composite name="choices">
+              <parameterable name="FreeWay"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.freeway.maps.FreeWayWithLaneMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+                <parameter name="pointsX"
+                value="50.0,150.0,150.0,450.0" />
+                <parameter name="pointsY"
+                value="50.0,150.0,350.0,450.0" />
+                <parameter name="lanenum" value="2" />
+                <parameter name="dir1lanespace" value="10" />
+                <parameter name="dir2lanespace" value="10" />
+                <parameter name="dir12space" value="20" />
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="locationinitializer"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="Null" />
+            <composite name="choices">
+              <parameterable name="Null"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.initiallocation.NullLocationInitializer"/>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="Manhattan"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.manhattan.ManhattanWithLaneModel">
+
+          <parameter name="maxacceleration" value="2" />
+          <parameter name="safedistanceratio" value="2.0" />
+          <parameter name="positiveaccratio" value="2.0" />
+          <parameter name="fixedacceleration" value="false" />
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="Manhattan" />
+            <composite name="choices">
+              <parameterable name="Manhattan"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.manhattan.maps.ManhattanWithLaneMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+                <parameter name="hlines" value="50,250,450" />
+                <parameter name="vlines" value="50,250,450" />
+                <parameter name="dir12lanespace" value="5" />
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="locationinitializer"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+            <parameter name="selected" value="Null" />
+            <composite name="choices">
+              <parameterable name="Null"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.initiallocation.NullLocationInitializer"/>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="Probabilistic Random Walk"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.probabilisticrandomwalk.ProbabilisticRandomWalk">
+
+          <parameter name="p0,0" value="0.7" />
+          <parameter name="p0,1" value="0.3" />
+          <parameter name="p0,2" value="0.0" />
+          <parameter name="p1,0" value="0.5" />
+          <parameter name="p1,1" value="0.0" />
+          <parameter name="p1,2" value="0.5" />
+          <parameter name="p2,0" value="0.0" />
+          <parameter name="p2,1" value="0.3" />
+          <parameter name="p2,2" value="0.7" />
+        </parameterable>
+        <parameterable name="Markov"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.markov.Markov2Model">
+
+          <parameter name="memoryfactor" value="0.8" />
+          <parameter name="randomamplitude" value="1.0" />
+        </parameterable>
+        <parameterable name="BiasedMarkov"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.markov.BiasedMarkov">
+
+          <parameter name="memoryfactor" value="0.2" />
+          <parameter name="randomamplitude" value="2.0" />
+        </parameterable>
+        <parameterable name="Exponential Correlated"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.markov.ExponentialCorrelated">
+
+          <parameter name="memoryfactor" value="0.2" />
+          <parameter name="randomamplitude" value="2.0" />
+        </parameterable>
+        <parameterable name="LevyWalk"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.levy.LevyWalk">
+
+          <parameter name="alpha" value="1" />
+          <parameter name="beta" value="1" />
+          <parameter name="minflight" value="5" />
+          <parameter name="maxflight" value="200" />
+          <parameter name="minpausetime" value="3" />
+          <parameter name="flightscale" value="10" />
+          <parameter name="pausetimescale" value="1" />
+        </parameterable>
+        <parameterable name="ThreeDizer"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.ThreeDizerModel">
+
+          <parameterable name="twodmodel"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+            <parameter name="selected" value="Random Walk" />
+            <composite name="choices" lazyReference="allModels" />
+          </parameterable>
+          <parameterable name="outputmapsetting"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+            <composite name="choice">
+              <parameterable name="outputmapsetting"
+              class="edu.sharif.ce.dml.common.parameters.logic.parameterable.FileParameter">
+
+                <parameter name="fileaddress"
+                value="output/ThreeDMap.xml" />
+                <parameter name="multiple" value="f" />
+                <parameter name="isinput" value="f" />
+                <parameter name="defaultfilter"
+                value="edu.sharif.ce.dml.common.data.configfilter.ConfigFileFilter" />
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="ThreeDMap" />
+            <composite name="choices">
+              <parameterable name="ThreeDMap"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.ThreeDMap">
+
+                <parameter name="width" value="500" />
+                <parameter name="height" value="500" />
+                <parameter name="gridsize" value="50" />
+                <parameter name="cacheprecision" value="1" />
+                <parameterable name="points"
+                class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+
+                  <parameter name="variablenumber" value="true" />
+                  <composite name="selected">
+                    <parameterable name="point"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+
+                      <parameter name="x" value="100" />
+                      <parameter name="y" value="100" />
+                      <parameter name="z" value="100" />
+                    </parameterable>
+                    <parameterable name="point2"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+
+                      <parameter name="x" value="100" />
+                      <parameter name="y" value="123" />
+                      <parameter name="z" value="100" />
+                    </parameterable>
+                    <parameterable name="point3"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+
+                      <parameter name="x" value="50" />
+                      <parameter name="y" value="150" />
+                      <parameter name="z" value="100" />
+                    </parameterable>
+                    <parameterable name="point4"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+
+                      <parameter name="x" value="50" />
+                      <parameter name="y" value="100" />
+                      <parameter name="z" value="100" />
+                    </parameterable>
+                  </composite>
+                  <composite name="choices">
+                    <parameterable name="point"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.ThreeD.threedmap.Point">
+
+                      <parameter name="x" value="0" />
+                      <parameter name="y" value="0" />
+                      <parameter name="z" value="0" />
+                    </parameterable>
+                  </composite>
+                </parameterable>
+              </parameterable>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="MultiModel"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.multi.MultiModel">
+
+          <parameter name="extendmap" value="true" />
+          <parameterable name="internalmodels"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.MultipleSelectParameter">
+
+            <parameter name="variablenumber" value="true" />
+            <composite name="selected"></composite>
+            <composite name="choices">
+              <parameterable name="defaultinternalmodel"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.multi.InternalModel">
+
+                <parameter name="internalnodes" value="1" />
+                <parameter name="offset" value="50.0,50.0" />
+                <parameterable name="internalmodel"
+                class="edu.sharif.ce.dml.common.parameters.logic.complex.LazySelectOneParameterable">
+
+                  <parameter name="selected" value="Random Walk" />
+                  <composite name="choices"
+                  lazyReference="allModels" />
+                </parameterable>
+              </parameterable>
+            </composite>
+          </parameterable>
+          <parameterable name="maps"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="square" />
+            <composite name="choices">
+              <parameterable name="square"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.maps.SquareMap">
+
+                <parameter name="width" value="600" />
+                <parameter name="height" value="600" />
+              </parameterable>
+            </composite>
+          </parameterable>
+        </parameterable>
+        <parameterable name="TortoiseModel"
+        class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.tortoise.TortoiseModel">
+
+          <parameterable name="rootaction"
+          class="edu.sharif.ce.dml.common.parameters.logic.complex.SelectOneParameterable">
+
+            <parameter name="selected" value="LoopSequence" />
+            <composite name="choices"
+            lazyLoadableID="loopSeqAction">
+              <parameterable name="LoopSequence"
+              class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.tortoise.LoopSequenceTortoiseAction">
+
+                <parameter name="loop" value="0" />
+                <parameter name="order" value="0" />
+                <parameterable name="actions"
+                class="edu.sharif.ce.dml.common.parameters.logic.complex.LazyMultipleSelectParameter">
+
+                  <parameter name="variablenumber" value="true" />
+                  <composite name="selected"></composite>
+                  <composite name="choices"
+                  lazyReference="loopSeqAction">
+                    <parameterable name="Transition"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.tortoise.TransitionTortoiseAction">
+
+                      <parameter name="order" value="0" />
+                      <parameter name="angle" value="0" />
+                      <parameter name="speed" value="0" />
+                      <parameter name="duration" value="0" />
+                      <parameter name="pausetime" value="0" />
+                      <parameter name="relativeangle" value="t" />
+                    </parameterable>
+                    <parameterable name="RandomizedTransition"
+                    class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.tortoise.RandomizedTransitionTortoiseAction">
+
+                      <parameter name="order" value="0" />
+                      <parameterable name="angle"
+                      class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+                        <composite name="choice">
+                          <parameterable name="RandomValue"
+                          class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+                            <parameter name="distribution"
+                            value="Normal" />
+                            <parameter name="params" value="0,1" />
+                            <parameter name="bias" value="0" />
+                            <parameter name="scale" value="1" />
+                          </parameterable>
+                        </composite>
+                      </parameterable>
+                      <parameterable name="speed"
+                      class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+                        <composite name="choice">
+                          <parameterable name="RandomValue"
+                          class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+                            <parameter name="distribution"
+                            value="Fixed" />
+                            <parameter name="params" value="10" />
+                            <parameter name="bias" value="0" />
+                            <parameter name="scale" value="1" />
+                          </parameterable>
+                        </composite>
+                      </parameterable>
+                      <parameterable name="duration"
+                      class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+                        <composite name="choice">
+                          <parameterable name="RandomValue"
+                          class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+                            <parameter name="distribution"
+                            value="Fixed" />
+                            <parameter name="params" value="5" />
+                            <parameter name="bias" value="0" />
+                            <parameter name="scale" value="1" />
+                          </parameterable>
+                        </composite>
+                      </parameterable>
+                      <parameterable name="pausetime"
+                      class="edu.sharif.ce.dml.common.parameters.logic.complex.ParameterableParameter">
+
+                        <composite name="choice">
+                          <parameterable name="RandomValue"
+                          class="edu.sharif.ce.dml.common.parameters.logic.parameterable.random.RandomParameterable">
+
+                            <parameter name="distribution"
+                            value="Fixed" />
+                            <parameter name="params" value="0" />
+                            <parameter name="bias" value="0" />
+                            <parameter name="scale" value="1" />
+                          </parameterable>
+                        </composite>
+                      </parameterable>
+                      <parameter name="relativeangle" value="t" />
+                    </parameterable>
+                  </composite>
+                </parameterable>
+              </parameterable>
+            </composite>
+          </parameterable>
+        </parameterable>
+      </composite>
+    </parameterable>
+  </parameterable>
+</rootcomposite>

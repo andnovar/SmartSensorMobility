@@ -1,0 +1,21 @@
+<!ELEMENT rootcomposite (default?,parameterable*)>
+<!ATTLIST rootcomposite
+				name CDATA #REQUIRED
+                file CDATA #IMPLIED
+                lazyLoadableID CDATA #IMPLIED>
+<!ELEMENT composite (default?,(parameterable*|parameter*|composite*))>
+<!ATTLIST composite
+				name CDATA #REQUIRED
+				lazyReference CDATA #IMPLIED
+				lazyLoadableID CDATA #IMPLIED
+				import CDATA #IMPLIED>
+<!ELEMENT parameterable (parameter|composite|parameterable)*>
+<!ATTLIST parameterable
+				name CDATA #REQUIRED
+                class CDATA #REQUIRED>
+<!ELEMENT default (parameter|composite|parameterable)*>
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter
+                name CDATA #REQUIRED
+                value CDATA #REQUIRED
+                class CDATA #IMPLIED>

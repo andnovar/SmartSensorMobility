@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rootcomposite SYSTEM "resource/parameterable.dtd">
+<rootcomposite name="">    
+    <parameterable name="MSTPrimePowerAlgorithm" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.poweralgorithm.mstprime.MSTPrimePowerAlgorithm">
+    </parameterable>
+    <parameterable name="RNGPowerAlgorithm" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.poweralgorithm.rng.RNGPowerAlgorithm">
+    </parameterable>    
+    <parameterable name="FixedPowerAlgorithm" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.poweralgorithm.fixed.FixedPowerAlgorithm">
+		<parameter name="value" value="100" />
+    </parameterable>
+	<parameterable name="NullPowerAlgorithm" class="edu.sharif.ce.dml.mobisim.mobilitygenerator.simulation.model.poweralgorithm.NullPowerAlgorithm">
+    </parameterable>
+
+</rootcomposite>
